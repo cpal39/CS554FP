@@ -1,5 +1,3 @@
-
-
 .App {
 	text-align: center;
 }
@@ -61,25 +59,11 @@
 	color: red !important;
 }
 
-.forgotPassword {
-	background: none !important;
-	border: none !important;
-	text-decoration: underline;
-	margin-left: 5px;
-	color: #069;
-}
-
-.forgotPassword:hover {
-	text-decoration: none;
-	color: red;
-}
-
 #root {
 	height: 100vh;
-	/* overflow: hidden; */
 }
 
-#landingParent {
+#landingParent,#accountParent {
 	height:100%;
 	text-align: center;
 	color: white;
@@ -88,11 +72,24 @@
 	background-image: url("./img/landingCover.jpg");
 }
 
-#landingChild {
+#landingChild,#accountChild {
 	height:100%;
 	background-color: rgba(0,0,0,0.7);
 }
 
-#landingHeader {
+#landingHeader,#accountHeader {
 	padding-top: 15px;
+}
+
+#accountGrandparent{
+	height:100%;
+	overflow: hidden;
+}
+
+.accountInfoName{
+	font-weight: bold;
+}
+
+#accountInfo, #webInfo {
+	text-align: left;
 }
