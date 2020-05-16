@@ -21,8 +21,10 @@ function Landing() {
 	const landIn=
 		<div id="landingParent">
 			<div id="landingChild">
-				<h2>COVID-19 Tracker</h2>
-				<h3>Developed by Hien Bui, Samantha DeLorenzo, and Chris Paldino</h3>
+				<div id="landingHeader">
+					<h2>COVID-19 Tracker</h2>
+					<h3>Developed by Hien Bui, Samantha DeLorenzo, and Chris Paldino</h3>
+				</div>
 				<SignIn/>
 				Don't have an account? &nbsp;
 				<button className="btn btn-link" onClick={handleClick}>

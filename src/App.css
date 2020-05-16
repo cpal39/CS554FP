@@ -76,21 +76,23 @@
 
 #root {
 	height: 100vh;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 #landingParent {
 	height:100%;
 	text-align: center;
 	color: white;
-	overflow-y: hidden;
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
 	background-image: url("./img/landingCover.jpg");
 }
 
 #landingChild {
 	height:100%;
-	padding: 15px;
 	background-color: rgba(0,0,0,0.7);
+}
+
+#landingHeader {
+	padding-top: 15px;
 }
