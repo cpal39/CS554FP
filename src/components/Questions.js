@@ -111,25 +111,26 @@ function Questions() {
 		</form>
 		<br />
 	</div>;
-	return (<div>
-		<div id="questionHeader">
-			<h3>COVID Questionnaire</h3>
-		</div>
-		<div className="row">
-			<div className="col-md-6 col-sm-12">
-				<div id="questionnaire">
-					{questionForm}
+	return (
+		<div>
+			<div id="questionHeader">
+				<h3>COVID Questionnaire</h3>
+			</div>
+			<div className="row">
+				<div className="col-md-6 col-sm-12">
+					<div id="questionnaire">
+						{questionForm}
+					</div>
+				</div>
+				<div className="col-md-6 col-sm-12">
+					<div id="questionResults">
+						<h4>Results:</h4>
+						<h5>{results}</h5>
+					</div>
 				</div>
 			</div>
-			<div className="col-md-6 col-sm-12">
-				<div id="questionResults">
-					<h4>Results:</h4>
-					<h5>{results}</h5>
-				</div>
-			</div>
 		</div>
-	</div>
-);
+	);
 }
 
 export default Questions;
