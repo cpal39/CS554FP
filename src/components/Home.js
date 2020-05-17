@@ -6,6 +6,7 @@ import Papa from "papaparse";
 import moment from "moment";
 import Navigation from './Navigation';
 import Questions from './Questions';
+import Query from './Query';
 
 import '../App.css';
 
@@ -114,6 +115,7 @@ function Home() {
 							</div>
 						</div>
 						<div className="col-md-6 col-sm-12">
+							<Query/>
 						</div>
 					</div>
 					<Questions/>
