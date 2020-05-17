@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import '../App.css';
 import firebase from 'firebase/app';
 
-function Questions(props) {
+function Questions() {
 	let user=firebase.auth().currentUser;
 	const [results, setResults] = useState("");
 	const submitForm = async (e) => {

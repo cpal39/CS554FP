@@ -107,6 +107,7 @@ function Home() {
 									width={500}
 									height={500}
 									instance={chart}
+									background="transparent"
 									title="United States COVID-19 Map"
 									geoData="anychart.maps.united_states_of_america"
 								/>

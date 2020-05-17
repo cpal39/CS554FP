@@ -30,15 +30,6 @@ app.get("/api/answers/:email",async(req,res)=>{
 
 app.post("/api/answers",async(req,res)=>{
 	try{
-		let newAnswer={
-			email:req.body.email,
-			answer1:req.body.answer1,
-			answer2:req.body.answer2,
-			answer3:req.body.answer3,
-			answer4:req.body.answer4,
-			answer5:req.body.answer5,
-			server:req.body.server
-		}
 		let ansCollection=await answers;
 		let answer=await ansCollection.findOne({email:req.body.email});
 		if(answer===null){
