@@ -79,7 +79,7 @@ function getChartData(){
 		{"id":"US.NY","value":mostRecentData[33].cases},
 		{"id":"US.NC","value":mostRecentData[34].cases},
 		{"id":"US.ND","value":mostRecentData[35].cases},
-		{"id":"US.0H","value":mostRecentData[37].cases},// SKIPPED MARIANA
+		{"id":"US.OH","value":mostRecentData[37].cases},// SKIPPED MARIANA
 		{"id":"US.OK","value":mostRecentData[38].cases},
 		{"id":"US.OR","value":mostRecentData[39].cases},
 		{"id":"US.PA","value":mostRecentData[40].cases},
