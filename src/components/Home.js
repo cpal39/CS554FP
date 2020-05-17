@@ -6,8 +6,8 @@ import Papa from "papaparse";
 import moment from "moment";
 import Navigation from './Navigation';
 import Questions from './Questions';
-
 import '../App.css';
+import later from 'later';
 
 var mostRecentData;
 
@@ -88,8 +88,32 @@ function getChartData(){
 	return data;
 }
 
-function Home() {
 
+function Home() {
+    /*updating global count*/
+    const [count, setCount] = useState(undefined);
+    
+    function getGlobalCount() {
+        Papa.parse("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/ecdc/total_cases.csv", {
+            header: true,
+            download: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
+            complete: function(results) {
+                setCount(count => results.data[results.data.length-1].world);
+            }
+        });
+        }
+      getGlobalCount();
+      useEffect(() => {
+        var sched = later.parse.text('every 5 hours');
+        var timer = later.setInterval(getGlobalCount,sched);
+
+        return () => timer.clear();
+      }, []);
+    
+    
 	var data = getChartData();
 	var chart = anychart.choropleth(data);
 	var tooltip = chart.tooltip();
@@ -100,6 +124,9 @@ function Home() {
 			<Navigation/>
 			<div id="homeChild">
 				<div className="container">
+                    <div className="row">
+                        <h3>Global Cases Count: {count}</h3>
+                    </div>
 					<div className="row">
 						<div className="col-md-6 col-sm-12">
 							<div id="mapDisplay">
