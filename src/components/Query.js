@@ -6,7 +6,10 @@ import Papa from 'papaparse';
 function Questions() {
 
 	var mostRecentData;
-	var US_states;
+	var CountyData;
+	const [US_states, setStates] = useState([]);
+	//const [curr_State, setCurr] = useState("");
+	//const [countyList, setCounty] = useState([]);
 
 	Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-states.csv", {
 		header: true,
@@ -19,20 +22,44 @@ function Questions() {
 		}
 	});
 
+	/*Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-counties.csv", {
+		header: true,
+		download: true,
+		dynamicTyping: true,
+		skipEmptyLines: true,
+		transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
+		complete: function(results) {
+			parseDataState(results.data);
+		}
+	});*/
+
 	function filterData(data) {
 	  return data.map(function(row) {
 	    return row.state;
 	  })
 	}
 
+	/*function filterState(data) {
+		var newData = data.filter(function(row) {
+			if (curr_State == row.state) {
+				return row;
+			}
+		})
+		return newData.map(function(row) {
+			return row.county;
+		})
+	}*/
+
 	function parseData(data) {
 		mostRecentData = data;
-		US_states = filterData(data);
-		console.log(mostRecentData);
-		console.log(US_states);
+		setStates(filterData(data));
 	}
 
-	var arr = ['hi', 'hello', 'world'];
+	/*function parseDataState(data) {
+		CountyData = data;
+		setCurr(US_states[0]);
+		setCounty(filterState(data));
+	}*/
 
 	let user=firebase.auth().currentUser;
 	const [results, setResults] = useState("");
@@ -85,7 +112,7 @@ function Questions() {
 						id="answer1"
 						data-width="fit"
 						required>
-					{arr.map((x,y) => <option key={y}>{x}</option>)}
+					{US_states.map((x,y) => <option key={y}>{x}</option>)}
 					</select>
 				</label>
 				<label style={{paddingRight: "30px"}}>
@@ -96,8 +123,7 @@ function Questions() {
 						id="answer2"
 						data-width="fit"
 						required>
-						<option value="Yes">Yes</option>
-						<option value="No">No</option>
+					{US_states.map((x,y) => <option key={y}>{x}</option>)}
 					</select>
 				</label>
 				<button type="submit">Submit Form</button>
