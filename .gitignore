@@ -1,2 +1,5 @@
 .env
-node_modules/
+node_modules/*
+!node_modules/.gitkeep
+fp_cs554db/*
+!fp_cs554db/.gitkeep
