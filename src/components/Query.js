@@ -5,25 +5,14 @@ import Papa from 'papaparse';
 
 function Query() {
 
-	var mostRecentData;
 	var CountyData;
-	const [US_states, setStates] = useState([]);
 	const [curr_State, setCurr] = useState("");
 	const [countyList, setCounty] = useState([]);
 
+	var US_states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+
 	useEffect(()=>{
 		function getData(){
-			Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-states.csv", {
-				header: true,
-				download: true,
-				dynamicTyping: true,
-				skipEmptyLines: true,
-				transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
-				complete: function(results) {
-					parseData(results.data);
-				}
-			});
-
 			Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-counties.csv", {
 				header: true,
 				download: true,
@@ -35,15 +24,9 @@ function Query() {
 				}
 			});
 
-			const filterData = (data)=> {
-				return data.map(function(row) {
-					return row.state;
-				})
-			}
-
 			const filterState = (data) => {
 				var newData = data.filter(function(row) {
-					if (curr_State == row.state) {
+					if ("Alabama" == row.state) {
 						return row;
 					}
 				})
@@ -52,22 +35,17 @@ function Query() {
 				})
 			}
 
-
-			const parseData = (data) => {
-				mostRecentData = data;
-				setStates(filterData(data));
-			}
-
 			const parseDataState = (data) => {
 				CountyData = data;
 				setCurr(US_states[0]);
 				setCounty(filterState(data));
-				console.log(countyList);
 			}
 		}
 	getData();}, []);
 
-
+	console.log(US_states);
+	console.log(curr_State);
+	console.log(countyList);
 
 	const stateForm=
 	<div>
