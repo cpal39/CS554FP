@@ -5,6 +5,7 @@ import anychart from 'anychart';
 import Papa from "papaparse";
 import moment from "moment";
 import Navigation from './Navigation';
+import Questions from './Questions';
 
 import '../App.css';
 
@@ -106,31 +107,28 @@ function Home() {
 	var data = getChartData();
 
 	return (
-		<div>
+		<div id="homeParent">
 			<Navigation/>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-sm-12">
-						<div id="mapDisplay">
-							<AnyChart
-								width={500}
-								height={500}
-								type="choropleth"
-								data={data}
-								title="United States COVID-19 Map"
-								geoData="anychart.maps.united_states_of_america"
-							/>;
+			<div id="homeChild">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-6 col-sm-12">
+							<div id="mapDisplay">
+								<AnyChart
+									width={500}
+									height={500}
+									background="transparent"
+									type="choropleth"
+									data={data}
+									title="United States COVID-19 Map"
+									geoData="anychart.maps.united_states_of_america"
+								/>
+							</div>
+						</div>
+						<div className="col-md-6 col-sm-12">
 						</div>
 					</div>
-					<div class="col-md-6 col-sm-12">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div id="questionnaire">
-							{/*component for questionnaire*/}
-						</div>
-					</div>
+					<Questions/>
 				</div>
 			</div>
 		</div>

@@ -22,7 +22,7 @@ function ChangeEmail() {
 	};
 	return (
 		<div>
-			<h3>Change Name</h3>
+			<h3>Change Email</h3>
 			<form onSubmit={submitForm}>
 				<div className="form-group">
 					<label>
