@@ -36,11 +36,11 @@ var mostRecentData;
   }
     function parseData(data) {
         mostRecentData = filterData(data);
-        
+
     }
 
-function getChartData(){    
-    
+function getChartData(){
+
   // create data set
    var data = anychart.data.set(
       [{"id":"US.AL","value":mostRecentData[0].cases},
@@ -94,16 +94,16 @@ function getChartData(){
        {"id":"US.WV","value":mostRecentData[52].cases},
        {"id":"US.WI","value":mostRecentData[53].cases},
        {"id":"US.WY","value":mostRecentData[54].cases}]
-       
+
   );
-      
+
       return data;
 }
 
 function Home() {
-    
+
     var data = getChartData();
-    
+
   return (
     <div>
       <h2>This is the Home page</h2>
@@ -115,7 +115,7 @@ function Home() {
     title="United States COVID-19 Map"
     geoData="anychart.maps.united_states_of_america"
       />;
-      
+
     </div>
   );
 }

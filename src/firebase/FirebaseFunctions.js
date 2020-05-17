@@ -1,36 +1,58 @@
 import firebase from 'firebase/app';
 
 async function doCreateUserWithEmailAndPassword(email, password, displayName) {
-  await firebase.auth().createUserWithEmailAndPassword(email, password);
-  firebase.auth().currentUser.updateProfile({ displayName: displayName });
+	await firebase.auth().createUserWithEmailAndPassword(email, password);
+	firebase.auth().currentUser.updateProfile({ displayName: displayName });
 }
 
 async function doChangePassword(email, oldPassword, newPassword) {
-  let credential = firebase.auth.EmailAuthProvider.credential(
-    email,
-    oldPassword
-  );
-  await firebase.auth().currentUser.reauthenticateWithCredential(credential);
-  await firebase.auth().currentUser.updatePassword(newPassword);
-  await doSignOut();
+	let credential = firebase.auth.EmailAuthProvider.credential(
+		email,
+		oldPassword
+	);
+	await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+	await firebase.auth().currentUser.updatePassword(newPassword);
+	await doSignOut();
+}
+
+async function doChangeName(newName,currentPassword){
+	let user=firebase.auth().currentUser;
+	let credential = firebase.auth.EmailAuthProvider.credential(
+		user.email,
+		currentPassword
+	);
+	await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+	firebase.auth().currentUser.updateProfile({displayName:newName});
+}
+
+async function doChangeEmail(newEmail, currentPassword) {
+	let user=firebase.auth().currentUser;
+	let credential = firebase.auth.EmailAuthProvider.credential(
+		user.email,
+		currentPassword
+	);
+	await firebase.auth().currentUser.reauthenticateWithCredential(credential);
+	await firebase.auth().currentUser.updateEmail(newEmail);
 }
 
 async function doSignInWithEmailAndPassword(email, password) {
-  await firebase.auth().signInWithEmailAndPassword(email, password);
+	await firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
 async function doPasswordReset(email) {
-  await firebase.auth().sendPasswordResetEmail(email);
+	await firebase.auth().sendPasswordResetEmail(email);
 }
 
 async function doSignOut() {
-  await firebase.auth().signOut();
+	await firebase.auth().signOut();
 }
 
 export {
-  doCreateUserWithEmailAndPassword,
-  doSignInWithEmailAndPassword,
-  doPasswordReset,
-  doSignOut,
-  doChangePassword
+	doCreateUserWithEmailAndPassword,
+	doSignInWithEmailAndPassword,
+	doPasswordReset,
+	doSignOut,
+	doChangePassword,
+	doChangeName,
+	doChangeEmail
 };
