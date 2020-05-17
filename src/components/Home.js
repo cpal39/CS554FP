@@ -54,7 +54,7 @@ function getChartData(){
        {"id":"US.DC","value":mostRecentData[8].cases},
        {"id":"US.FL","value":mostRecentData[9].cases},
        {"id":"US.GA","value":mostRecentData[10].cases},
-       {"id":"US.HI","value":mostRecentData[12].cases},
+       {"id":"US.HI","value":mostRecentData[12].cases},//SKIPPED GUAM
        {"id":"US.ID","value":mostRecentData[13].cases},
        {"id":"US.IL","value":mostRecentData[14].cases},
        {"id":"US.IN","value":mostRecentData[15].cases},
@@ -78,22 +78,22 @@ function getChartData(){
        {"id":"US.NY","value":mostRecentData[33].cases},
        {"id":"US.NC","value":mostRecentData[34].cases},
        {"id":"US.ND","value":mostRecentData[35].cases},
-       {"id":"US.0H","value":mostRecentData[36].cases},
-       {"id":"US.OK","value":mostRecentData[37].cases},
-       {"id":"US.OR","value":mostRecentData[38].cases},
-       {"id":"US.PA","value":mostRecentData[39].cases},
-       {"id":"US.RI","value":mostRecentData[40].cases},
-       {"id":"US.SC","value":mostRecentData[41].cases},
-       {"id":"US.SD","value":mostRecentData[42].cases},
-       {"id":"US.TN","value":mostRecentData[43].cases},
-       {"id":"US.TX","value":mostRecentData[44].cases},
-       {"id":"US.UT","value":mostRecentData[45].cases},
-       {"id":"US.VT","value":mostRecentData[46].cases},
-       {"id":"US.VA","value":mostRecentData[47].cases},
-       {"id":"US.WA","value":mostRecentData[48].cases},
-       {"id":"US.WV","value":mostRecentData[49].cases},
-       {"id":"US.WI","value":mostRecentData[50].cases},
-       {"id":"US.WY","value":mostRecentData[51].cases}]
+       {"id":"US.0H","value":mostRecentData[37].cases},// SKIPPED MARIANA
+       {"id":"US.OK","value":mostRecentData[38].cases},
+       {"id":"US.OR","value":mostRecentData[39].cases},
+       {"id":"US.PA","value":mostRecentData[40].cases},
+       {"id":"US.RI","value":mostRecentData[42].cases}, //SKIPPED PUERTO
+       {"id":"US.SC","value":mostRecentData[43].cases},
+       {"id":"US.SD","value":mostRecentData[44].cases},
+       {"id":"US.TN","value":mostRecentData[45].cases},
+       {"id":"US.TX","value":mostRecentData[46].cases},
+       {"id":"US.UT","value":mostRecentData[47].cases},
+       {"id":"US.VT","value":mostRecentData[48].cases},
+       {"id":"US.VA","value":mostRecentData[50].cases}, //SKIPPED VIRGIN ISLANDS
+       {"id":"US.WA","value":mostRecentData[51].cases},
+       {"id":"US.WV","value":mostRecentData[52].cases},
+       {"id":"US.WI","value":mostRecentData[53].cases},
+       {"id":"US.WY","value":mostRecentData[54].cases}]
        
   );
       
