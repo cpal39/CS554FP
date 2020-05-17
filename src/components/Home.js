@@ -11,7 +11,7 @@ import '../App.css';
 
 var mostRecentData;
 
-Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv", {
+Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-states.csv", {
 	header: true,
 	download: true,
 	dynamicTyping: true,
@@ -22,22 +22,8 @@ Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-st
 	}
 });
 
-function filterData(data) {
-	var maxDate = new Date(Math.max.apply(null, data.map(function(e) {
-		var m = moment(e.date, 'YYYY-MM-DD');
-		return new Date(m.format());
-	})));
-
-	return data.filter(function(row) {
-		var m = moment(row.date, 'YYYY-MM-DD');
-		if (new Date(m.format()).getTime() == maxDate.getTime()) {
-			return row;
-		}
-	})
-
-}
 function parseData(data) {
-	mostRecentData = filterData(data);
+	mostRecentData = data;
 
 }
 
@@ -45,57 +31,57 @@ function getChartData(){
 
 	// create data set
 	var data = anychart.data.set(
-		[{"id":"US.AL","value":mostRecentData[0].cases},
-		{"id":"US.AK","value":mostRecentData[1].cases},
-		{"id":"US.AZ","value":mostRecentData[2].cases},
-		{"id":"US.AR","value":mostRecentData[3].cases},
-		{"id":"US.CA","value":mostRecentData[4].cases},
-		{"id":"US.CO","value":mostRecentData[5].cases},
-		{"id":"US.CT","value":mostRecentData[6].cases},
-		{"id":"US.DE","value":mostRecentData[7].cases},
-		{"id":"US.DC","value":mostRecentData[8].cases},
-		{"id":"US.FL","value":mostRecentData[9].cases},
-		{"id":"US.GA","value":mostRecentData[10].cases},
-		{"id":"US.HI","value":mostRecentData[12].cases},//SKIPPED GUAM
-		{"id":"US.ID","value":mostRecentData[13].cases},
-		{"id":"US.IL","value":mostRecentData[14].cases},
-		{"id":"US.IN","value":mostRecentData[15].cases},
-		{"id":"US.IA","value":mostRecentData[16].cases},
-		{"id":"US.KS","value":mostRecentData[17].cases},
-		{"id":"US.KY","value":mostRecentData[18].cases},
-		{"id":"US.LA","value":mostRecentData[19].cases},
-		{"id":"US.ME","value":mostRecentData[20].cases},
-		{"id":"US.MD","value":mostRecentData[21].cases},
-		{"id":"US.MA","value":mostRecentData[22].cases},
-		{"id":"US.MI","value":mostRecentData[23].cases},
-		{"id":"US.MN","value":mostRecentData[24].cases},
-		{"id":"US.MS","value":mostRecentData[25].cases},
-		{"id":"US.MO","value":mostRecentData[26].cases},
-		{"id":"US.MT","value":mostRecentData[27].cases},
-		{"id":"US.NE","value":mostRecentData[28].cases},
-		{"id":"US.NV","value":mostRecentData[29].cases},
-		{"id":"US.NH","value":mostRecentData[30].cases},
-		{"id":"US.NJ","value":mostRecentData[31].cases},
-		{"id":"US.NM","value":mostRecentData[32].cases},
-		{"id":"US.NY","value":mostRecentData[33].cases},
-		{"id":"US.NC","value":mostRecentData[34].cases},
-		{"id":"US.ND","value":mostRecentData[35].cases},
-		{"id":"US.OH","value":mostRecentData[37].cases},// SKIPPED MARIANA
-		{"id":"US.OK","value":mostRecentData[38].cases},
-		{"id":"US.OR","value":mostRecentData[39].cases},
-		{"id":"US.PA","value":mostRecentData[40].cases},
-		{"id":"US.RI","value":mostRecentData[42].cases}, //SKIPPED PUERTO
-		{"id":"US.SC","value":mostRecentData[43].cases},
-		{"id":"US.SD","value":mostRecentData[44].cases},
-		{"id":"US.TN","value":mostRecentData[45].cases},
-		{"id":"US.TX","value":mostRecentData[46].cases},
-		{"id":"US.UT","value":mostRecentData[47].cases},
-		{"id":"US.VT","value":mostRecentData[48].cases},
-		{"id":"US.VA","value":mostRecentData[50].cases}, //SKIPPED VIRGIN ISLANDS
-		{"id":"US.WA","value":mostRecentData[51].cases},
-		{"id":"US.WV","value":mostRecentData[52].cases},
-		{"id":"US.WI","value":mostRecentData[53].cases},
-		{"id":"US.WY","value":mostRecentData[54].cases}]
+		[{"id":"US.AL","cases":mostRecentData[0].cases, "deaths":mostRecentData[0].deaths},
+		{"id":"US.AK","cases":mostRecentData[1].cases, "deaths":mostRecentData[1].deaths},
+		{"id":"US.AZ","cases":mostRecentData[2].cases, "deaths":mostRecentData[2].deaths},
+		{"id":"US.AR","cases":mostRecentData[3].cases, "deaths":mostRecentData[3].deaths},
+		{"id":"US.CA","cases":mostRecentData[4].cases, "deaths":mostRecentData[4].deaths},
+		{"id":"US.CO","cases":mostRecentData[5].cases, "deaths":mostRecentData[5].deaths},
+		{"id":"US.CT","cases":mostRecentData[6].cases, "deaths":mostRecentData[6].deaths},
+		{"id":"US.DE","cases":mostRecentData[7].cases, "deaths":mostRecentData[7].deaths},
+		{"id":"US.DC","cases":mostRecentData[8].cases, "deaths":mostRecentData[8].deaths},
+		{"id":"US.FL","cases":mostRecentData[9].cases, "deaths":mostRecentData[9].deaths},
+		{"id":"US.GA","cases":mostRecentData[10].cases, "deaths":mostRecentData[10].deaths},
+		{"id":"US.HI","cases":mostRecentData[12].cases, "deaths":mostRecentData[12].deaths},//SKIPPED GUAM
+		{"id":"US.ID","cases":mostRecentData[13].cases, "deaths":mostRecentData[13].deaths},
+		{"id":"US.IL","cases":mostRecentData[14].cases, "deaths":mostRecentData[14].deaths},
+		{"id":"US.IN","cases":mostRecentData[15].cases, "deaths":mostRecentData[15].deaths},
+		{"id":"US.IA","cases":mostRecentData[16].cases, "deaths":mostRecentData[16].deaths},
+		{"id":"US.KS","cases":mostRecentData[17].cases, "deaths":mostRecentData[17].deaths},
+		{"id":"US.KY","cases":mostRecentData[18].cases, "deaths":mostRecentData[18].deaths},
+		{"id":"US.LA","cases":mostRecentData[19].cases, "deaths":mostRecentData[19].deaths},
+		{"id":"US.ME","cases":mostRecentData[20].cases, "deaths":mostRecentData[20].deaths},
+		{"id":"US.MD","cases":mostRecentData[21].cases, "deaths":mostRecentData[21].deaths},
+		{"id":"US.MA","cases":mostRecentData[22].cases, "deaths":mostRecentData[22].deaths},
+		{"id":"US.MI","cases":mostRecentData[23].cases, "deaths":mostRecentData[23].deaths},
+		{"id":"US.MN","cases":mostRecentData[24].cases, "deaths":mostRecentData[24].deaths},
+		{"id":"US.MS","cases":mostRecentData[25].cases, "deaths":mostRecentData[25].deaths},
+		{"id":"US.MO","cases":mostRecentData[26].cases, "deaths":mostRecentData[26].deaths},
+		{"id":"US.MT","cases":mostRecentData[27].cases, "deaths":mostRecentData[27].deaths},
+		{"id":"US.NE","cases":mostRecentData[28].cases, "deaths":mostRecentData[28].deaths},
+		{"id":"US.NV","cases":mostRecentData[29].cases, "deaths":mostRecentData[29].deaths},
+		{"id":"US.NH","cases":mostRecentData[30].cases, "deaths":mostRecentData[30].deaths},
+		{"id":"US.NJ","cases":mostRecentData[31].cases, "deaths":mostRecentData[31].deaths},
+		{"id":"US.NM","cases":mostRecentData[32].cases, "deaths":mostRecentData[32].deaths},
+		{"id":"US.NY","cases":mostRecentData[33].cases, "deaths":mostRecentData[33].deaths},
+		{"id":"US.NC","cases":mostRecentData[34].cases, "deaths":mostRecentData[34].deaths},
+		{"id":"US.ND","cases":mostRecentData[35].cases, "deaths":mostRecentData[35].deaths},
+		{"id":"US.OH","cases":mostRecentData[37].cases, "deaths":mostRecentData[37].deaths},// SKIPPED MARIANA
+		{"id":"US.OK","cases":mostRecentData[38].cases, "deaths":mostRecentData[38].deaths},
+		{"id":"US.OR","cases":mostRecentData[39].cases, "deaths":mostRecentData[39].deaths},
+		{"id":"US.PA","cases":mostRecentData[40].cases, "deaths":mostRecentData[40].deaths},
+		{"id":"US.RI","cases":mostRecentData[42].cases, "deaths":mostRecentData[42].deaths}, //SKIPPED PUERTO
+		{"id":"US.SC","cases":mostRecentData[43].cases, "deaths":mostRecentData[43].deaths},
+		{"id":"US.SD","cases":mostRecentData[44].cases, "deaths":mostRecentData[44].deaths},
+		{"id":"US.TN","cases":mostRecentData[45].cases, "deaths":mostRecentData[45].deaths},
+		{"id":"US.TX","cases":mostRecentData[46].cases, "deaths":mostRecentData[46].deaths},
+		{"id":"US.UT","cases":mostRecentData[47].cases, "deaths":mostRecentData[47].deaths},
+		{"id":"US.VT","cases":mostRecentData[48].cases, "deaths":mostRecentData[48].deaths},
+		{"id":"US.VA","cases":mostRecentData[50].cases, "deaths":mostRecentData[50].deaths}, //SKIPPED VIRGIN ISLANDS
+		{"id":"US.WA","cases":mostRecentData[51].cases, "deaths":mostRecentData[51].deaths},
+		{"id":"US.WV","cases":mostRecentData[52].cases, "deaths":mostRecentData[52].deaths},
+		{"id":"US.WI","cases":mostRecentData[53].cases, "deaths":mostRecentData[53].deaths},
+		{"id":"US.WY","cases":mostRecentData[54].cases, "deaths":mostRecentData[54].deaths}]
 
 	);
 
@@ -105,6 +91,9 @@ function getChartData(){
 function Home() {
 
 	var data = getChartData();
+	var chart = anychart.choropleth(data);
+	var tooltip = chart.tooltip();
+	tooltip.format("Cases: {%cases}\nDeaths: {%deaths}");
 
 	return (
 		<div id="homeParent">
@@ -117,9 +106,7 @@ function Home() {
 								<AnyChart
 									width={500}
 									height={500}
-									background="transparent"
-									type="choropleth"
-									data={data}
+									instance={chart}
 									title="United States COVID-19 Map"
 									geoData="anychart.maps.united_states_of_america"
 								/>
