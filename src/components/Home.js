@@ -6,6 +6,10 @@ import Papa from "papaparse";
 import moment from "moment";
 import Navigation from './Navigation';
 import Questions from './Questions';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 84821a886a499b5f24aadec0a1575abb5e511a01
 import '../App.css';
 import later from 'later';
 

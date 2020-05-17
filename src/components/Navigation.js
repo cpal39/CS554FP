@@ -15,21 +15,21 @@ const Navigation = () => {
 			<ul className="navbar-nav">
 				<li className="nav-item">
 					<NavLink className="nav-link" exact to="/home" activeClassName="active">
-					Home
-				</NavLink>
-			</li>
-			<li className="nav-item">
-				<NavLink className="nav-link" exact to="/account" activeClassName="active">
-				Account
-			</NavLink>
-		</li>
-	</ul>
-</div>
-</nav>;
+						Home
+					</NavLink>
+				</li>
+				<li className="nav-item">
+					<NavLink className="nav-link" exact to="/account" activeClassName="active">
+						Account
+					</NavLink>
+				</li>
+			</ul>
+		</div>
+	</nav>;
 
-return (currentUser?nav:null);
+	return (currentUser?nav:null);
 
-};
+}
 
 
 export default Navigation;
