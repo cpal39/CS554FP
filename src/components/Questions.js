@@ -15,7 +15,7 @@ function Questions() {
 			answer5
 		} = e.target.elements;
 		let resultsValue="";
-		if(((answer4.value==="Yes" || answer5.value==="Yes") && (answer1.value==="Yes" || answer2.value==="Yes" || answer3.value==="Yes")) || (answer1.value==="Yes" && answer2.value==="Yes" && answer3.value==="Yes")){
+		if(((answer4.value==="Yes" || answer5.value==="Yes") && (answer1.value==="Yes" || answer2.value==="Yes" || answer3.value==="Yes")) || (answer1.value==="Yes" && answer2.value==="Yes" && answer3.value==="Yes") || (answer4.value==="Yes" && answer5.value==="Yes")){
 			setResults("You may have COVID-19");
 			resultsValue="You may have COVID-19";
 		}
