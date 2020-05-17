@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import '../App.css';
 import firebase from 'firebase/app';
 import Papa from 'papaparse';
@@ -11,56 +11,63 @@ function Query() {
 	const [curr_State, setCurr] = useState("");
 	const [countyList, setCounty] = useState([]);
 
-	Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-states.csv", {
-		header: true,
-		download: true,
-		dynamicTyping: true,
-		skipEmptyLines: true,
-		transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
-		complete: function(results) {
-			parseData(results.data);
-		}
-	});
+	useEffect(()=>{
+		function getData(){
+			Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-states.csv", {
+				header: true,
+				download: true,
+				dynamicTyping: true,
+				skipEmptyLines: true,
+				transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
+				complete: function(results) {
+					parseData(results.data);
+				}
+			});
 
-	Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-counties.csv", {
-		header: true,
-		download: true,
-		dynamicTyping: true,
-		skipEmptyLines: true,
-		transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
-		complete: function(results) {
-			parseDataState(results.data);
-		}
-	});
+			Papa.parse("https://raw.githubusercontent.com/nytimes/covid-19-data/master/live/us-counties.csv", {
+				header: true,
+				download: true,
+				dynamicTyping: true,
+				skipEmptyLines: true,
+				transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
+				complete: function(results) {
+					parseDataState(results.data);
+				}
+			});
 
-	const filterData = (data)=> {
-		return data.map(function(row) {
-			return row.state;
-		})
-	}
-
-	const filterState = (data) => {
-		var newData = data.filter(function(row) {
-			if (curr_State == row.state) {
-				return row;
+			const filterData = (data)=> {
+				return data.map(function(row) {
+					return row.state;
+				})
 			}
-		})
-		return newData.map(function(row) {
-			return row.county;
-		})
-	}
+
+			const filterState = (data) => {
+				var newData = data.filter(function(row) {
+					if (curr_State == row.state) {
+						return row;
+					}
+				})
+				return newData.map(function(row) {
+					return row.county;
+				})
+			}
 
 
-	const parseData = (data) => {
-		mostRecentData = data;
-		setStates(filterData(data));
-	}
+			const parseData = (data) => {
+				mostRecentData = data;
+				setStates(filterData(data));
+			}
 
-	const parseDataState = (data) => {
-		CountyData = data;
-		setCurr(US_states[0]);
-		setCounty(filterState(data));
-	}
+			const parseDataState = (data) => {
+				CountyData = data;
+				setCurr(US_states[0]);
+				setCounty(filterState(data));
+				console.log(countyList);
+			}
+		}
+	getData();}, []);
+
+
 
 	const stateForm=
 	<div>
