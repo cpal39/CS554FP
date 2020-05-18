@@ -6,7 +6,7 @@ import Papa from 'papaparse';
 function Query() {
 	const [countyData, setData] = useState([]);
 	const [countyList, setCounty] = useState([]);
-	//const [results, setResults] = useState([]);
+	const [results, setResults] = useState({});
 	var cases = "";
 	var deaths = "";
 
@@ -52,10 +52,11 @@ function Query() {
 		var obj = countyData.filter(function(x) {
 			if(x.state == stateDropdown.value && x.county == countyDropdown.value) {
 				return x;
-			} 
+			}
 		});
 		cases = obj[0].cases;
 		deaths = obj[0].deaths;
+		setResults({cases:`Cases: ${cases}`,deaths:`Deaths: ${deaths}`});
 	}
 
 	const stateForm=
@@ -100,8 +101,8 @@ function Query() {
 				{stateForm}
 			</div>
 			<h4>Results:</h4>
-			<h5>Cases: {cases}</h5>
-			<h5>Deaths: {deaths}</h5>
+			<h5>{results.cases}</h5>
+			<h5>{results.deaths}</h5>
 		</div>
 	);
 }
