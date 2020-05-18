@@ -47,6 +47,10 @@ function Query() {
 	console.log(curr_State);
 	console.log(countyList);
 
+	let ChangeDropDown = (e) => {
+		console.log("hello");
+	}
+
 	const stateForm=
 	<div>
 		<form>
@@ -54,6 +58,7 @@ function Query() {
 				<label style={{paddingRight: "30px"}}>
 					State
 					<select
+						onChange={ChangeDropDown}
 						className="form-control"
 						name="stateDropdown"
 						id="stateDropdown"
