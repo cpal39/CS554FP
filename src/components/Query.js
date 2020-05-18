@@ -18,13 +18,9 @@ function Query() {
 				skipEmptyLines: true,
 				transformHeader: header => header.toLowerCase().replace(/\W/g, "_"),
 				complete: function(results) {
-					parseDataState(results.data);
+					setData(results.data);
 				}
 			});
-
-			const parseDataState = (data) => {
-				setData(data);
-			}
 		}
 	getData();}, []);
 
@@ -42,7 +38,6 @@ function Query() {
 	let ChangeDropDown = (e) => {
 		setCounty(filterState(countyData,e.target.value));
 	}
-	console.log(countyData);
 
 	const stateForm=
 	<div>
