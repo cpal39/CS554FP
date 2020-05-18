@@ -4,9 +4,7 @@ import firebase from 'firebase/app';
 import Papa from 'papaparse';
 
 function Query() {
-
 	const [countyData, setData] = useState([]);
-	const [curr_State, setCurr] = useState("Alabama");
 	const [countyList, setCounty] = useState([]);
 
 	var US_states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
@@ -24,31 +22,15 @@ function Query() {
 				}
 			});
 
-			const filterState = (data) => {
-				var newData = data.filter(function(row) {
-					if (curr_State == row.state) {
-						return row;
-					}
-				})
-				return newData.map(function(row) {
-					return row.county;
-				})
-			}
-
 			const parseDataState = (data) => {
 				setData(data);
-				setCounty(filterState(data));
 			}
 		}
 	getData();}, []);
 
-	console.log(US_states);
-	console.log(curr_State);
-	console.log(countyList);
-
-	function filterState(data) {
+	function filterState(data,state) {
 		var newData = data.filter(function(row) {
-			if (curr_State == row.state) {
+			if (state == row.state) {
 				return row;
 			}
 		})
@@ -58,8 +40,7 @@ function Query() {
 	}
 
 	let ChangeDropDown = (e) => {
-		setCurr(e.target.value);
-		setCounty(filterState(countyData));
+		setCounty(filterState(countyData,e.target.value));
 	}
 	console.log(countyData);
 
@@ -76,6 +57,7 @@ function Query() {
 						id="stateDropdown"
 						data-width="fit"
 						required>
+						<option selected disabled defaultValue>Select State</option>
 						{US_states.map((x,y) => <option key={y}>{x}</option>)}
 					</select>
 				</label>
