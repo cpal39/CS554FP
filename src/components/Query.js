@@ -6,6 +6,9 @@ import Papa from 'papaparse';
 function Query() {
 	const [countyData, setData] = useState([]);
 	const [countyList, setCounty] = useState([]);
+	//const [results, setResults] = useState([]);
+	var cases = "";
+	var deaths = "";
 
 	var US_states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
 
@@ -39,9 +42,25 @@ function Query() {
 		setCounty(filterState(countyData,e.target.value));
 	}
 
+	const submitForm = (e) => {
+		e.preventDefault();
+		const {
+			stateDropdown,
+			countyDropdown
+		} = e.target.elements;
+
+		var obj = countyData.filter(function(x) {
+			if(x.state == stateDropdown.value && x.county == countyDropdown.value) {
+				return x;
+			} 
+		});
+		cases = obj[0].cases;
+		deaths = obj[0].deaths;
+	}
+
 	const stateForm=
 	<div>
-		<form>
+		<form onSubmit={submitForm}>
 			<div className="form-group" style={{textAlign: "center"}}>
 				<label style={{paddingRight: "30px"}}>
 					State
@@ -80,6 +99,9 @@ function Query() {
 			<div id="stateFormDiv">
 				{stateForm}
 			</div>
+			<h4>Results:</h4>
+			<h5>Cases: {cases}</h5>
+			<h5>Deaths: {deaths}</h5>
 		</div>
 	);
 }
